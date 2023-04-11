@@ -1,1 +1,1 @@
-# IGME480-FinalProject-Playlist
+# algebra-project-playlists
