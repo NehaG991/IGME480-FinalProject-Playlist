@@ -4,7 +4,7 @@ import {Alg} from './algebra.js';
 const API = {
   addPlaylists: (...playlists) => Alg.addPlaylists(...playlists),
   sortPlaylist: (playlist, filter) => Alg.sortPlaylist(playlist, filter),
-  sortByDate: (playlist) => sortPlaylist(playlist, filter),
+  sortByDate: (playlist) => Alg.sortPlaylist(playlist, filter),
 
   // Somewhat more advanced features of the API, used occasionally
   // above to concisely implement some tricky features. We'll cover

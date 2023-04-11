@@ -11,7 +11,16 @@ const Alg = {
     sortPlaylist: (playlist, filter) => ({
       _tag: 'sortP',
       playlist
-    })
+    }),
+    pure: (value) => ({
+      _tag: 'Pure',
+      value
+    }),
+    ap: (functionTile, domainTile) => ({
+      _tag: 'Ap',
+      functionTile,
+      domainTile
+    }),
   };
   
   export {
