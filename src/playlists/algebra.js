@@ -4,31 +4,14 @@ const Alg = {
       _tag: 'FunctionName',
       playlist
     }),*/
-    flipH: (tile) => ({
-      _tag: 'FlipH',
-      tile
+    addPlaylists: (...playlists) => ({
+      _tag:'AddP',
+      playlists
     }),
-    above: (...tiles) => ({
-      _tag: 'Above',
-      tiles
-    }),
-    pure: (value) => ({
-      _tag: 'Pure',
-      value
-    }),
-    ap: (functionTile, domainTile) => ({
-      _tag: 'Ap',
-      functionTile,
-      domainTile
-    }),
-  
-    // Unfortunate but (as far as I can currently tell) somewhat necessary.
-    fromImage: (img) => {
-      return {
-        _tag: 'FromImage',
-        img
-      };
-    }
+    sortPlaylist: (playlist, filter) => ({
+      _tag: 'sortP',
+      playlist
+    })
   };
   
   export {

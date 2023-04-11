@@ -1,45 +1,16 @@
 import {Alg} from './algebra.js';
-import {pipe} from './utility/index.js';
 
 // all possible functions that can be applied to playlists
 const API = {
-  clockwise: (tile) => Alg.cw(tile),
-  counterclockwise: (tile) => pipe(
-    API.clockwise, API.clockwise, API.clockwise
-  )(tile),
-  flipHorizontal: (tile) => Alg.flipH(tile),
-  flipVertical: (tile) => pipe(
-    API.clockwise, API.flipHorizontal, API.counterclockwise
-  )(tile),
-  beside: (...tiles) => (
-    API.counterclockwise(API.above(...tiles.map(API.clockwise))) 
-  ),
-  above: (...tiles) => Alg.above(...tiles),
-  quad: (upLeftTile, upRightTile, downLeftTile, downRightTile) => (
-    API.above(
-      API.beside(upLeftTile, upRightTile),
-      API.beside(downLeftTile, downRightTile)
-    )
-  ),
-  swirl: (tile) => (
-    API.quad(
-      tile, 
-      API.clockwise(tile),
-      API.counterclockwise(tile), 
-      API.clockwise(API.clockwise(tile))
-    )
-  ),
-  behind: (appendOp) => (backTile, frontTile) => (
-    API.ap(API.map((a) => (b) => appendOp(a, b))
-                  (frontTile))
-          (backTile)
-  ),
+  addPlaylists: (...playlists) => Alg.addPlaylists(...playlists),
+  sortPlaylist: (playlist, filter) => Alg.sortPlaylist(playlist, filter),
+  sortByDate: (playlist) => sortPlaylist(playlist, filter),
 
   // Somewhat more advanced features of the API, used occasionally
   // above to concisely implement some tricky features. We'll cover
   // (some) of what and why these things are in the future  
-  map: (f) => (tile) => (
-    API.ap(API.pure(f))(tile)
+  map: (f) => (playlist) => (
+    API.ap(API.pure(f))(playlist)
   ),
   pure: (value) => Alg.pure(value),
   ap: (functionTile) => (domainTile) => (
